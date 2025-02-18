@@ -26,6 +26,13 @@
 			{
 				"navigationBarTitleText" : ""
 			}
+		},
+		{
+			"path" : "pages/demo4-cartShop/demo4-cartShop",
+			"style" : 
+			{
+				"navigationBarTitleText" : "购物车案例"
+			}
 		}
 	],
 	"globalStyle": {

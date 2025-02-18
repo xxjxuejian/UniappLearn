@@ -3,5 +3,18 @@
     "projectname": "uniappV3Demo1",
     "setting": {
         "compileHotReLoad": true
+    },
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "",
+                    "pathName": "pages/demo4-cartShop/demo4-cartShop",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
+        }
     }
 }
