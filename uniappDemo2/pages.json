@@ -5,8 +5,31 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		},
+		{
+			"path" : "pages/demo1/demo1",
+			"style" : 
+			{
+				"navigationBarTitleText" : "页面的生命周期"
+			}
+		},
+		{
+			"path" : "pages/demo2-onload/demo2-onload",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/demo3-css-import/demo3-css-import",
+			// 页面样式，同样的属性会覆盖全局样式
+			"style" : 
+			{
+				"navigationBarTitleText" : "demo3-css-import"
+			}
 		}
 	],
+	// 全局样式
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

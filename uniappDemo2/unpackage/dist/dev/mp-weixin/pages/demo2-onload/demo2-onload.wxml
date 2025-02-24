@@ -1,0 +1,1 @@
+<view class="box"><text>通常onLoad页面生命周期是用来接收参数，接收另外的页面传递过来的参数</text><view class="" ref="vwRef">{{a}}--{{b}}</view></view>

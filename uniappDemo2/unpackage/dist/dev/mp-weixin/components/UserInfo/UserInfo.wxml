@@ -1,0 +1,1 @@
+<view class="userinfo"><image src="{{a}}"></image><view class="username">张三</view></view>
