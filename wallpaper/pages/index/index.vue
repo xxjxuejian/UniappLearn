@@ -46,14 +46,14 @@
 			</common-title>
 			<view class="scroll-list">
 				<scroll-view scroll-x="true" class="scroll-x">
-					<view class="box" v-for="img in 8">
+					<view class="box" v-for="img in 8" :key="img">
 						<image src="@/common/images/preview_small.webp" mode="aspectFill"></image>
 					</view>
 				</scroll-view>
 			</view>
 		</view>
 		
-		<view class="special-sub">
+		<view class="theme">
 			<common-title>
 				<template #name>专题精选</template>
 				<template #custom>
@@ -62,7 +62,8 @@
 			</common-title>
 			
 			<view class="content">
-				<theme-item v-for="theme in 8" class="item" ></theme-item>
+				<theme-item v-for="theme in 8" :key="theme" class="item" ></theme-item>
+				<theme-item :isMore="true" class="item" ></theme-item>
 			</view>
 		</view>
 	</view>
@@ -168,7 +169,6 @@
 				white-space: nowrap;
 			
 				.box{
-					outline: 2px solid red;
 					width: 200rpx;
 					height: 430rpx;
 					display: inline-block;
@@ -186,7 +186,7 @@
 		}
 	}
 	
-	.special-sub{
+	.theme{
 		padding-top: 50rpx;
 		
 		.more{
