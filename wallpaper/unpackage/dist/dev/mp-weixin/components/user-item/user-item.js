@@ -25,8 +25,7 @@ const _sfc_main = {
       return {
         a: common_vendor.p({
           type: __props.icon,
-          size: "26",
-          color: "#25b38b"
+          size: "26"
         }),
         b: common_vendor.t(__props.title),
         c: common_vendor.p({

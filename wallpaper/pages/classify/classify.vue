@@ -1,5 +1,5 @@
 <template>
-	<view class="classLayout">
+	<view class="classLayout pageBg">
 		<view class="classify">
 			<theme-item v-for="item in 15" :key="item" class="item"></theme-item>
 		</view>
@@ -12,6 +12,7 @@
 
 <style lang="scss" scoped>
 	.classLayout{
+	
 		.classify{
 			margin: 30rpx auto;
 			width: 690rpx;

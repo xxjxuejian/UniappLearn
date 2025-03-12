@@ -23,46 +23,16 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.userLayout .userInfo.data-v-0f7520f0 {
+.classList .content.data-v-104357ab {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50rpx 0;
+  flex-wrap: wrap;
+  gap: 6rpx 6rpx;
 }
-.userLayout .userInfo .avatar.data-v-0f7520f0 {
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 50%;
+.classList .content .item.data-v-104357ab {
+  width: 236rpx;
+  height: 440rpx;
 }
-.userLayout .userInfo .ip.data-v-0f7520f0 {
-  font-size: 44rpx;
-  color: #333;
-  padding: 20rpx 0 5rpx;
-}
-.userLayout .userInfo .area.data-v-0f7520f0 {
-  font-size: 28rpx;
-  color: #aaa;
-}
-.userLayout .section.data-v-0f7520f0 {
-  width: 690rpx;
-  margin: 0 auto;
-  margin-bottom: 50rpx;
-  border: 1px solid #f2f2f2;
-  border-radius: 10rpx;
-  box-shadow: 0 0 30rpx rgba(0, 0, 0, 0.2);
-}
-.userLayout .section .contact-us-wx.data-v-0f7520f0 {
-  position: relative;
-}
-.userLayout .section .contact-us-wx .contact.data-v-0f7520f0 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
-  opacity: 0;
-}
-.userLayout .section-item.data-v-0f7520f0:last-child {
-  border-bottom: none;
+.classList .content .item image.data-v-104357ab {
+  width: 100%;
+  height: 100%;
 }

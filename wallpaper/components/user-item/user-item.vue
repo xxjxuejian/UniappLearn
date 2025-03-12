@@ -1,7 +1,6 @@
 <template>
 	<view class="userItem">
-		<slot></slot>
-		<uni-icons :type="icon" size="26" color="#25b38b" class="icon"></uni-icons>
+		<uni-icons :type="icon" size="26" class="icon" ></uni-icons>
 		<view class="content">
 			<text class="title">{{title}}</text>
 			<text class="counter">0</text>
@@ -19,7 +18,8 @@ const props = defineProps({
 	title:{
 		type:String,
 		default:'我的下载'
-	}
+	},
+	
 })
 </script>
 
@@ -30,10 +30,19 @@ const props = defineProps({
 	padding: 20rpx 32rpx;
 	border-bottom: 1px solid #f2f2f2;
 	
-	
+
+	// 在h5中uni-icons类是直接在加这个元素上的，但是在微信中，uni-icons类是该元素内部的一个元素上的，所以选不中
 	.icon {
+		color:$brand-theme-color !important;
 		
+		/* #ifdef MP */
+		:deep(text){
+				color:$brand-theme-color !important;
+		}
+		/* #endif */
 	}
+
+	
 	.content{
 		flex: 1;
 		display: flex;

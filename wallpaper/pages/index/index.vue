@@ -1,5 +1,5 @@
 <template>
-	<view class="home">
+	<view class="home pageBg">
 		<view class="banner">
 			<swiper indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" 
 			circular  interval="3000">
@@ -116,7 +116,7 @@
 			justify-content: center;
 			align-items: center;
 			.text{
-				color:#28b389;
+				color:$brand-theme-color;
 				font-weight: 600;
 			}
 		}

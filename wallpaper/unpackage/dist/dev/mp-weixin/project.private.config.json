@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "",
-                    "pathName": "pages/user/user",
+                    "pathName": "pages/classList/classList",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

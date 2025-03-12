@@ -1,5 +1,5 @@
 <template>
-	<view class="userLayout">
+	<view class="userLayout pageBg">
 			<view class="userInfo">
 				<image src="/static/images/xxmLogo.png" mode="" class="avatar"></image>
 				<view class="ip">
@@ -15,8 +15,15 @@
 				<user-item class="section-item" icon="star-filled" title="我的评分"></user-item>
 				<view class="contact-us-wx">
 					<user-item class="section-item" icon="chat-filled" title="联系客服"></user-item>
+					<!-- 小程序端联系客服必须使用 button, open-type="contact"会调用微信聊天 但是在h5中是不一样的，所以需要条件编译-->
+					<!-- #ifdef MP -->
+					<button open-type="contact" class="contact">微信客服</button>
+					<!-- #endif -->
+					<!-- #ifndef MP -->
+					<button open-type="contact" class="contact" @click="callPhone" >拨打电话</button>
+					<!-- #endif -->
 				</view>
-					<!-- <button open-type="contact">联系我们</button> -->
+					
 			</view>
 			
 			<view class="section">
@@ -27,7 +34,11 @@
 </template>
 
 <script setup>
-	
+const callPhone = ()=>{
+	uni.makePhoneCall({
+		phoneNumber: '114' 
+	})
+}
 </script>
 
 <style lang="scss" scoped>
@@ -58,11 +69,24 @@
 			width: 690rpx;
 			margin: 0 auto;
 			margin-bottom: 50rpx;
-			
 			border: 1px solid #f2f2f2;
 			border-radius: 10rpx;
 			box-shadow: 0 0 30rpx rgba(0, 0, 0, 0.2);
 			
+			
+			.contact-us-wx{
+				position: relative;
+				
+				.contact{
+					position: absolute;
+					top: 0;
+					bottom:0;
+					left: 0;
+					right: 0;
+					z-index: 9;
+					opacity: 0;
+				}
+			}
 			&-item{
 				&:last-child{
 					border-bottom: none;

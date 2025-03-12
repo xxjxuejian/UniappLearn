@@ -29,6 +29,12 @@
   padding: 20rpx 32rpx;
   border-bottom: 1px solid #f2f2f2;
 }
+.userItem .icon.data-v-1041c623 {
+  color: #28B389 !important;
+}
+.userItem .icon.data-v-1041c623 text {
+  color: #28B389 !important;
+}
 .userItem .content.data-v-1041c623 {
   flex: 1;
   display: flex;
