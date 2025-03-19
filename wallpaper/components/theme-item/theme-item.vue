@@ -1,6 +1,6 @@
 <template>
 	<view class="themeItem">
-		<navigator url="" class="content"  v-if="!isMore">
+		<navigator url="/pages/classList/classList" class="content"  v-if="!isMore">
 			<view class="top">
 				<text class="text">是啥啊</text>
 			</view>
@@ -10,8 +10,8 @@
 			</view>
 		</navigator>
 		
-		
-		<navigator url="" class="content more" v-if="isMore">
+		<!-- 跳转tabbar页面，必须设置open-type="switchTab"  -->
+		<navigator url="/pages/classify/classify" open-type="switchTab" class="content more" v-if="isMore">
 			<image class="pic" src="/common/images/more.jpg" mode="aspectFill"></image>
 			<view class="mask">
 				<uni-icons type="more-filled" size="38" color="#fff"></uni-icons>

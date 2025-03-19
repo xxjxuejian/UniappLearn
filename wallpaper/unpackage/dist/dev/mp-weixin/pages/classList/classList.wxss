@@ -26,11 +26,12 @@
 .classList .content.data-v-104357ab {
   display: flex;
   flex-wrap: wrap;
-  gap: 6rpx 6rpx;
+  justify-content: space-evenly;
 }
 .classList .content .item.data-v-104357ab {
-  width: 236rpx;
+  width: 230rpx;
   height: 440rpx;
+  margin-bottom: 15rpx;
 }
 .classList .content .item image.data-v-104357ab {
   width: 100%;

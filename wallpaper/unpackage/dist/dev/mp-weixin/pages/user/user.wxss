@@ -63,6 +63,6 @@
   z-index: 9;
   opacity: 0;
 }
-.userLayout .section-item.data-v-0f7520f0:last-child {
+.userLayout .section-item.last.data-v-0f7520f0 {
   border-bottom: none;
 }

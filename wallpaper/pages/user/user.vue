@@ -11,10 +11,16 @@
 			</view>
 			
 			<view class="section">
-				<user-item class="section-item" icon="download" title="我的下载"></user-item>
-				<user-item class="section-item" icon="star-filled" title="我的评分"></user-item>
+					<navigator url="/pages/classList/classList">
+						<user-item class="section-item" icon="download" title="我的下载"></user-item>
+					</navigator>
+				
+				<navigator url="/pages/classList/classList">
+					<user-item class="section-item" icon="star-filled" title="我的评分"></user-item>
+				</navigator>
+				
 				<view class="contact-us-wx">
-					<user-item class="section-item" icon="chat-filled" title="联系客服"></user-item>
+					<user-item class="section-item last" icon="chat-filled" title="联系客服"></user-item>
 					<!-- 小程序端联系客服必须使用 button, open-type="contact"会调用微信聊天 但是在h5中是不一样的，所以需要条件编译-->
 					<!-- #ifdef MP -->
 					<button open-type="contact" class="contact">微信客服</button>
@@ -28,7 +34,7 @@
 			
 			<view class="section">
 				<user-item class="section-item" icon="notification-filled" title="订阅更新"></user-item>
-				<user-item class="section-item" icon="flag-filled" title="常见问题"></user-item>
+				<user-item class="section-item last" icon="flag-filled" title="常见问题"></user-item>
 			</view>
 	</view>
 </template>
@@ -87,8 +93,9 @@ const callPhone = ()=>{
 					opacity: 0;
 				}
 			}
+			
 			&-item{
-				&:last-child{
+				&.last{
 					border-bottom: none;
 				}
 			}
