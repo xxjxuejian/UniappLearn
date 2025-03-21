@@ -30,11 +30,14 @@ const _sfc_main = {
       infoPopupRef.value.close();
     };
     const imgScore = common_vendor.ref(3.5);
-    const markImage = () => {
-      common_vendor.index.__f__("log", "at pages/preview/preview.vue:144", "mark");
+    const scorePopupRef = common_vendor.ref(null);
+    const popScore = () => {
+      common_vendor.index.__f__("log", "at pages/preview/preview.vue:150", "mark");
       scorePopupRef.value.open();
     };
-    const scorePopupRef = common_vendor.ref(null);
+    const cloesScorePopup = () => {
+      scorePopupRef.value.close();
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(5, (item, k0, i0) => {
@@ -61,7 +64,7 @@ const _sfc_main = {
           type: "star",
           size: "30"
         }),
-        h: common_vendor.o(markImage),
+        h: common_vendor.o(popScore),
         i: common_vendor.p({
           type: "download",
           size: "26"
@@ -93,18 +96,19 @@ const _sfc_main = {
         r: common_vendor.p({
           type: "bottom"
         }),
-        s: common_vendor.p({
+        s: common_vendor.o(cloesScorePopup),
+        t: common_vendor.p({
           type: "closeempty",
           size: "20"
         }),
-        t: common_vendor.p({
+        v: common_vendor.p({
           max: 5,
           value: 2
         }),
-        v: common_vendor.sr(scorePopupRef, "2dad6c07-8", {
+        w: common_vendor.sr(scorePopupRef, "2dad6c07-8", {
           "k": "scorePopupRef"
         }),
-        w: common_vendor.p({
+        x: common_vendor.p({
           ["background-color"]: "#fff"
         })
       };

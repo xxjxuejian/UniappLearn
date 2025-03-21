@@ -25,7 +25,7 @@
 						信息
 					</view>
 				</view>
-				<view class="box" @click="markImage">
+				<view class="box" @click="popScore">
 					<uni-icons type="star" size="30"></uni-icons>
 					<view class="text">
 						评分
@@ -108,15 +108,20 @@
 		</uni-popup>
 		
 		<!-- 评分弹窗 -->
-		<uni-popup ref="scorePopupRef" background-color="#fff"  >
+		<!-- uniapp渲染在小程序中，uni-popup组件是一个包裹层，他身上是没有 uni-popup类的 -->
+		<uni-popup ref="scorePopupRef" background-color="#fff" class="score" >
 			<view class="score-popup" >
 				<view class="popHeader">
-					<view class=""></view>
-					<view class="title">壁纸信息</view>
-					<uni-icons type="closeempty" size="20" class="close"></uni-icons>
+					<view></view>
+					<view class="title">
+						壁纸信息
+					</view>
+					<uni-icons type="closeempty" size="20" class="close" @click="cloesScorePopup"></uni-icons>
 				</view>
-				
-				<uni-rate :max="5" :value="2" />
+				<view class="rate">
+					<uni-rate :max="5" :value="2" />
+					<button  type="default" size="mini">确认评分</button>
+				</view>
 			</view>
 		</uni-popup>
 	</view>
@@ -140,11 +145,15 @@
 	const imgScore = ref(3.5)
 	
 	// 评分
-	const markImage = ()=>{
+	const scorePopupRef = ref(null)
+	const popScore = ()=>{
 		console.log("mark")
 		scorePopupRef.value.open()
 	}
-	const scorePopupRef = ref(null)
+	const cloesScorePopup = ()=>{
+		scorePopupRef.value.close()
+	}
+
 </script>
 
 <style lang="scss" scoped>
@@ -236,18 +245,6 @@
 		border-radius: 30rpx 30rpx 0 0;
 		background-color: #fff;
 		
-		.popHeader{
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			.title{
-				color: $text-font-color-2;
-				font-size: 26rpx;
-			}
-			.close{
-				padding: 6rpx;
-			}
-		}
 		.scroll-view-info{
 			max-height: 60vh;
 			
@@ -308,28 +305,38 @@
 		}
 	}
 	
-	.score-popup{
-		width: 500rpx;
-		height: 300rpx;
-		padding: 20rpx;
-		border-radius: 30rpx;
-		// overflow: hidden;
-		
-		.popHeader{
-			display: flex;
-			justify-content: space-between;
-			border: 1px solid red;
+	uni-popup.score {
+		color:red;
+		.uni-popup.center{
+			color:blue;
 			
-			.title{
-				color: $text-font-color-2;
-				font-size: 26rpx;
+			.uni-popup__wrapper{
+				border-radius:30rpx;
+				font-size: 40rpx;
 			}
-			.close{
-				padding: 6rpx;
+			.score-popup{
+				padding: 30rpx;
+				width: 70vw;
+				border-radius:30rpx;
+				background-color: #fff;
 			}
 		}
 		
 
+	}
+
+}
+
+.popHeader{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.title{
+		color: $text-font-color-2;
+		font-size: 26rpx;
+	}
+	.close{
+		padding: 6rpx;
 	}
 }
 </style>
