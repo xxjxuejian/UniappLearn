@@ -1,13 +1,19 @@
 <template>
 	<view class="classLayout pageBg">
-		<view class="classify">
+		<custom-nav-bar title="分类"></custom-nav-bar>
+		
+		<view class="classify" >
 			<theme-item v-for="item in 15" :key="item" class="item"></theme-item>
 		</view>
 	</view>
 </template>
 
 <script setup>
-	
+	const goPreview = () => {
+		uni.navigateTo({
+			url:'/pages/preview/preview'
+		})
+	}
 </script>
 
 <style lang="scss" scoped>

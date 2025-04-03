@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "",
-                    "pathName": "pages/preview/preview",
+                    "pathName": "pages/index/index",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

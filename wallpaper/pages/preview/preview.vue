@@ -10,7 +10,11 @@
 		
 		<!-- mask -->
 		<view class="mask" v-show="!hiddenMask" >
-			<view class="goBack"></view>
+			<view class="goBack" :style="{height:goBackBarHeight + 'px' , top: getStatusBarHeight() + 'px'}"
+			@click="handleGoBack"
+			>
+				<uni-icons type="back" size="20" color="#fff" ></uni-icons>
+			</view>
 			<view class="count">3 / 9</view>
 			<view class="time">
 				<uni-dateformat :date="new Date()" format="hh:mm"></uni-dateformat>
@@ -87,8 +91,7 @@
 								<text>NBACFAF啊第几集啊啊实打实的就阿山 </text>
 							</view>
 						</view>
-						
-						
+											
 						<view class="row" >
 							<view class="label">标签：</view>
 							<view class="value tabs">
@@ -109,7 +112,7 @@
 		
 		<!-- 评分弹窗 -->
 		<!-- uniapp渲染在小程序中，uni-popup组件是一个包裹层，他身上是没有 uni-popup类的 -->
-		<uni-popup ref="scorePopupRef" background-color="#fff" class="score" >
+		<uni-popup ref="scorePopupRef"  class="score"  :is-mask-click="false">
 			<view class="score-popup" >
 				<view class="popHeader">
 					<view></view>
@@ -118,21 +121,34 @@
 					</view>
 					<uni-icons type="closeempty" size="20" class="close" @click="cloesScorePopup"></uni-icons>
 				</view>
-				<view class="rate">
-					<uni-rate :max="5" :value="2" />
-					<button  type="default" size="mini">确认评分</button>
+				
+				<view class="rate">                
+					<uni-rate :max="5" v-model="imgScore" allowHalf />
+					<text>{{imgScore}}分</text>
 				</view>
+				
+				<view class="btn">
+					<button  type="default" size="mini" :disabled="!imgScore" plain @click="handleScore">确认评分</button>
+				</view>
+				
 			</view>
 		</uni-popup>
 	</view>
 </template>
 
 <script setup>
+	import { getTitleBarHeight ,getStatusBarHeight} from "@/utils/system.js"
+	
 	const hiddenMask = ref(false)
 	const toggleMask = ()=>{
 		hiddenMask.value = !hiddenMask.value
 	}
 	
+	// 返回按钮
+	const goBackBarHeight = ref( getTitleBarHeight() )
+	const handleGoBack = ()=>{
+		uni.navigateBack()
+	}
 	// 信息框
 	const infoPopupRef = ref(null)
 	const popInfo = ()=>{
@@ -142,10 +158,16 @@
 		infoPopupRef.value.close()
 	}
 	
-	const imgScore = ref(3.5)
+	
 	
 	// 评分
+	const imgScore = ref(3.5)
 	const scorePopupRef = ref(null)
+	
+	const handleScore = ()=>{
+		console.log("平分了")
+	}
+	
 	const popScore = ()=>{
 		console.log("mark")
 		scorePopupRef.value.open()
@@ -179,16 +201,26 @@
 		height: 100%;
 		z-index: 0;
 			
-			&>view{
-				position: absolute;
-				left: 0;
-				right: 0;
-				margin: 0 auto;
-				width: fit-content;
-				color: #fff;
-			}
+		&>view{
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			width: fit-content;
+			color: #fff;
+		}
 		.goBack{
-			
+			width: 38px;
+			height: 38px;
+			left: 30rpx;
+			margin:0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: rgba(0, 0, 0, 0.5);
+			backdrop-filter: blur(10rpx);
+			border:1px solid rgba(255, 255, 255, 0.3);
+			border-radius: 100%;
 		}
 		
 		.count{
@@ -305,24 +337,28 @@
 		}
 	}
 	
-	uni-popup.score {
-		color:red;
-		.uni-popup.center{
-			color:blue;
-			
-			.uni-popup__wrapper{
-				border-radius:30rpx;
-				font-size: 40rpx;
-			}
-			.score-popup{
-				padding: 30rpx;
-				width: 70vw;
-				border-radius:30rpx;
-				background-color: #fff;
+	.score-popup{
+		padding: 30rpx;
+		width: 70vw;
+		border-radius:30rpx;
+		background-color: #fff;
+		
+		.rate{
+			padding: 30rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text{
+				margin-left: 20rpx;
 			}
 		}
 		
-
+		.btn{
+			padding: 10rpx 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 }

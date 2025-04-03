@@ -27,14 +27,14 @@
 			"path" : "pages/classList/classList",
 			"style" : 
 			{
-				"navigationBarTitleText" : "分类页面"
+				"navigationBarTitleText" : "列表"
 			}
 		},
 		{
 			"path" : "pages/preview/preview",
 			"style" : 
 			{
-				"navigationBarTitleText" : "预览页",
+				"navigationBarTitleText" : "预览",
 				"navigationStyle": "custom"
 			}
 		}

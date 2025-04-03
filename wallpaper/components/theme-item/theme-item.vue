@@ -2,11 +2,11 @@
 	<view class="themeItem">
 		<navigator url="/pages/classList/classList" class="content"  v-if="!isMore">
 			<view class="top">
-				<text class="text">是啥啊</text>
+				<text class="text">2天前更新</text>
 			</view>
-			<image class="pic" src="/common/images/classify1.jpg" mode="aspectFill"></image>
+			<image class="pic" :src="classItem.picurl" mode="aspectFill"></image>
 			<view class="bottom">
-				可爱萌宠
+				{{classItem.name}}
 			</view>
 		</navigator>
 		
@@ -26,6 +26,17 @@ const props = defineProps({
 	isMore:{
 		type:Boolean,
 		default:false,
+	},
+	classItem:{
+		type:Object,
+		// 默认是一个对象，还要规定内部的属性
+		default(){
+			return {
+				name:"",
+				picurl:"",
+				updateTime:''
+			}
+		}
 	}
 })
 </script>
@@ -53,6 +64,7 @@ const props = defineProps({
 			// 通常最小字体是12px，还想小可以试试scale
 			transform-origin: left top;
 			transform: scale(0.8);
+			z-index:1
 		}
 		
 		.pic{

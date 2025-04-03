@@ -1,17 +1,14 @@
 <template>
 	<view class="home pageBg">
+		<custom-nav-bar title="推荐"></custom-nav-bar>
+		
 		<view class="banner">
 			<swiper indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" 
 			circular  interval="3000">
-				<swiper-item>
-					<image src="/common/images/banner1.jpg" mode="aspectFill"></image>
+				<swiper-item v-for="item in bannerList" :key="item._id">
+					<image :src="item.picurl" mode="aspectFill"></image>
 				</swiper-item>
-				<swiper-item>
-						<image src="/common/images/banner2.jpg" mode="aspectFill"></image>
-				</swiper-item>
-				<swiper-item>
-						<image src="/common/images/banner3.jpg" mode="aspectFill"></image>
-				</swiper-item>
+				
 			</swiper>
 		</view>
 		
@@ -22,8 +19,8 @@
 			</view>
 			<view class="center">
 				<swiper  :autoplay="true" circular :interval="1500" :duration="1000" vertical>
-					<swiper-item v-for="item in 3" :key='item'>
-						公告大师傅似的手动阀手动阀手动阀手动阀撒打发撒打发撒打发asdasdsadas奥奥阿达
+					<swiper-item v-for="item in noticeList" :key='item._id'>
+						{{item.title}}
 					</swiper-item>
 				</swiper>
 			</view>
@@ -46,8 +43,8 @@
 			</common-title>
 			<view class="scroll-list">
 				<scroll-view scroll-x="true" class="scroll-x">
-					<view class="box" v-for="img in 8" :key="img">
-						<image src="@/common/images/preview_small.webp" mode="aspectFill"></image>
+					<view class="box" v-for="item in randomRec" :key="item._id" @click="goPreview">
+						<image :src="item.smallPicurl" mode="aspectFill"></image>
 					</view>
 				</scroll-view>
 			</view>
@@ -62,7 +59,10 @@
 			</common-title>
 			
 			<view class="content">
-				<theme-item v-for="theme in 8" :key="theme" class="item" ></theme-item>
+				<theme-item v-for="theme in specials" :key="theme._id" 
+				class="item" :classItem="theme"
+				>
+				</theme-item>
 				<theme-item :isMore="true" class="item" ></theme-item>
 			</view>
 		</view>
@@ -70,11 +70,64 @@
 </template>
 
 <script setup>
+	import {apiGetBanners,apiGetNoticeList,apiGetRandomRec,apiGetClassify} from "@/api/apis.js"
+	// 顶部轮播
+	const bannerList = ref([])
+
+	function getBanner(){
+		apiGetBanners().then((res)=>{
+			bannerList.value = res.data
+		})
+	}
+	
+	// 公告列表
+	const noticeList = ref([])
+	function getNoticeList(){
+		apiGetNoticeList().then((res)=>{
+			noticeList.value = res.data
+		})
+	}
+	
+	
+	// 每日推荐
+	const randomRec = ref([])
+	function getRandomRec(){
+		apiGetRandomRec().then((res)=>{
+			randomRec.value = res.data
+		})
+	}
+	
+	
+	// 专题精选
+	const specials = ref([])
+	function getSpecialList(){
+		apiGetClassify({
+			select:true
+		}).then((res)=>{
+			specials.value = res.data
+			console.log(specials.value)
+		})
+	}
+	
+	
+	getBanner()
+	getNoticeList()
+	getRandomRec()
+	getSpecialList()
+	
+	// 去预览页
+	const goPreview = () => {
+		uni.navigateTo({
+			url:'/pages/preview/preview'
+		})
+	}
 
 </script>
 
 <style lang="scss" scoped>
 .home{
+	// border:2px solid red;
+	
 	.banner{
 		width: 750rpx;
 		padding: 30rpx 0;
