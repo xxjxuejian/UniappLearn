@@ -1,8 +1,15 @@
 <template>
 	<view class="themeItem">
-		<navigator url="/pages/classList/classList" class="content"  v-if="!isMore">
+		<!-- 页面跳转传参，触发了透传 -->
+		<navigator :url="`/pages/classList/classList?id=${classItem._id}&name=${classItem.name}`"  class="content"  v-if="!isMore">
 			<view class="top">
-				<text class="text">2天前更新</text>
+				<view class="text">
+					<uni-dateformat :date="classItem.updateTime" 
+					:threshold="[60000,5184000000]"
+					format="MM/dd"
+					/>
+					更新
+					</view>
 			</view>
 			<image class="pic" :src="classItem.picurl" mode="aspectFill"></image>
 			<view class="bottom">

@@ -1,14 +1,25 @@
 <template>
 	<view class="classLayout pageBg">
 		<custom-nav-bar title="分类"></custom-nav-bar>
-		
 		<view class="classify" >
-			<theme-item v-for="item in 15" :key="item" class="item"></theme-item>
+			<theme-item v-for="item in classifyList" :key="item._id" class="item" :classItem="item"></theme-item>
 		</view>
 	</view>
 </template>
 
 <script setup>
+	import {apiGetClassify} from "@/api/apis.js"
+	// 获取分类数据，就是首页专题精选的接口
+	const classifyList = ref([])
+	async function getClassifyData(){
+		const res = await apiGetClassify({
+			pageSize:15
+		})
+		classifyList.value = res.data
+		console.log(classifyList.value)
+	}
+	getClassifyData()
+	
 	const goPreview = () => {
 		uni.navigateTo({
 			url:'/pages/preview/preview'

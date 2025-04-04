@@ -36,3 +36,13 @@ export function apiGetClassify(data={}){
 	})
 }
 
+
+// 获取某一个类别下的详情数据列表
+export function apiGetClassifyList(data={}){
+	return request({
+		url:'/wallList',
+		method:'get',
+		data,
+	})
+}
+

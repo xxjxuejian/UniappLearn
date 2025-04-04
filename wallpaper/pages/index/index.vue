@@ -105,7 +105,6 @@
 			select:true
 		}).then((res)=>{
 			specials.value = res.data
-			console.log(specials.value)
 		})
 	}
 	
