@@ -43,6 +43,7 @@
   font-size: 22rpx;
   transform-origin: left top;
   transform: scale(0.8);
+  z-index: 1;
 }
 .themeItem .content .pic.data-v-f4eafbca {
   width: 100%;

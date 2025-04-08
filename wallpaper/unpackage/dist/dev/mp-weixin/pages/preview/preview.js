@@ -19,6 +19,10 @@ if (!Math) {
 const _sfc_main = {
   __name: "preview",
   setup(__props) {
+    common_vendor.onShow(() => {
+      const storageClassList = common_vendor.index.getStorageInfoSync("classList");
+      common_vendor.index.__f__("log", "at pages/preview/preview.vue:146", "classList", storageClassList.classList);
+    });
     const hiddenMask = common_vendor.ref(false);
     const toggleMask = () => {
       hiddenMask.value = !hiddenMask.value;
@@ -37,10 +41,10 @@ const _sfc_main = {
     const imgScore = common_vendor.ref(3.5);
     const scorePopupRef = common_vendor.ref(null);
     const handleScore = () => {
-      common_vendor.index.__f__("log", "at pages/preview/preview.vue:168", "平分了");
+      common_vendor.index.__f__("log", "at pages/preview/preview.vue:174", "平分了");
     };
     const popScore = () => {
-      common_vendor.index.__f__("log", "at pages/preview/preview.vue:172", "mark");
+      common_vendor.index.__f__("log", "at pages/preview/preview.vue:178", "mark");
       scorePopupRef.value.open();
     };
     const cloesScorePopup = () => {
@@ -54,7 +58,7 @@ const _sfc_main = {
             b: item
           };
         }),
-        b: common_assets._imports_0$2,
+        b: common_assets._imports_0$1,
         c: common_vendor.p({
           type: "back",
           size: "20",

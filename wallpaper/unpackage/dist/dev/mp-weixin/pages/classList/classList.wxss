@@ -33,6 +33,9 @@
   height: 440rpx;
   margin-bottom: 15rpx;
 }
+.classList .content .item.end.data-v-104357ab {
+  height: 0;
+}
 .classList .content .item image.data-v-104357ab {
   width: 100%;
   height: 100%;

@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_apis = require("../../api/apis.js");
 if (!Array) {
   const _easycom_custom_nav_bar2 = common_vendor.resolveComponent("custom-nav-bar");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
@@ -21,55 +22,34 @@ const _sfc_main = {
   setup(__props) {
     const bannerList = common_vendor.ref([]);
     function getBanner() {
-      common_vendor.index.request({
-        url: "https://tea.qingnian8.com/api/bizhi/homeBanner",
-        method: "GET",
-        header: {
-          "access-key": "xxjkey9824"
-        }
-      }).then((res) => {
-        common_vendor.index.__f__("log", "at pages/index/index.vue:80", "banner", res.data);
-        if (res.data.errCode === 0) {
-          bannerList.value = res.data.data;
-        }
+      api_apis.apiGetBanners().then((res) => {
+        bannerList.value = res.data;
       });
     }
     const noticeList = common_vendor.ref([]);
     function getNoticeList() {
-      common_vendor.index.request({
-        url: "https://tea.qingnian8.com/api/bizhi/wallNewsList",
-        method: "GET",
-        header: {
-          "access-key": "xxjkey9824"
-        },
-        data: {
-          select: true
-        }
-      }).then((res) => {
-        common_vendor.index.__f__("log", "at pages/index/index.vue:100", "公告", res.data);
-        if (res.data.errCode === 0) {
-          noticeList.value = res.data.data;
-        }
+      api_apis.apiGetNoticeList().then((res) => {
+        noticeList.value = res.data;
       });
     }
     const randomRec = common_vendor.ref([]);
     function getRandomRec() {
-      common_vendor.index.request({
-        url: "https://tea.qingnian8.com/api/bizhi/randomWall",
-        method: "GET",
-        header: {
-          "access-key": "xxjkey9824"
-        }
+      api_apis.apiGetRandomRec().then((res) => {
+        randomRec.value = res.data;
+      });
+    }
+    const specials = common_vendor.ref([]);
+    function getSpecialList() {
+      api_apis.apiGetClassify({
+        select: true
       }).then((res) => {
-        common_vendor.index.__f__("log", "at pages/index/index.vue:118", "推荐", res.data);
-        if (res.data.errCode === 0) {
-          randomRec.value = res.data.data;
-        }
+        specials.value = res.data;
       });
     }
     getBanner();
     getNoticeList();
     getRandomRec();
+    getSpecialList();
     const goPreview = () => {
       common_vendor.index.navigateTo({
         url: "/pages/preview/preview"
@@ -118,10 +98,13 @@ const _sfc_main = {
             c: common_vendor.o(goPreview, item._id)
           };
         }),
-        i: common_vendor.f(8, (theme, k0, i0) => {
+        i: common_vendor.f(common_vendor.unref(specials), (theme, k0, i0) => {
           return {
-            a: theme,
-            b: "1cf27b2a-7-" + i0
+            a: theme._id,
+            b: "1cf27b2a-7-" + i0,
+            c: common_vendor.p({
+              classItem: theme
+            })
           };
         }),
         j: common_vendor.p({

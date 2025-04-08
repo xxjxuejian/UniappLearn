@@ -2,12 +2,13 @@
 	<view class="preview">
 		<!-- 这里是一个轮播图 scrollview ? swiper 是不是都可以-->
 <!-- 		<image src="/common/images/preview1.jpg" mode=""></image> -->
-		<swiper class="swiper" >
-			<swiper-item v-for="item in 5" :key="item">
-				<image src="/common/images/preview1.jpg" mode="aspectFill" @click="toggleMask"></image>
+		<swiper class="swiper" circular>
+			<swiper-item v-for="item in imageList" :key="item._id">
+				<image :src="item.smallPicurl" mode="aspectFill" @click="toggleMask"></image>
 			</swiper-item>
 		</swiper>
 		
+		<!-- mask层有问题，还有就是从分类点击 进到 预览页时，要显示当前点击的这张图 -->
 		<!-- mask -->
 		<view class="mask" v-show="!hiddenMask" >
 			<view class="goBack" :style="{height:goBackBarHeight + 'px' , top: getStatusBarHeight() + 'px'}"
@@ -128,7 +129,7 @@
 				</view>
 				
 				<view class="btn">
-					<button  type="default" size="mini" :disabled="!imgScore" plain @click="handleScore">确认评分</button>
+					<button type="default" size="mini" :disabled="!imgScore" plain @click="handleScore">确认评分</button>
 				</view>
 				
 			</view>
@@ -137,9 +138,18 @@
 </template>
 
 <script setup>
-	import { getTitleBarHeight ,getStatusBarHeight} from "@/utils/system.js"
 	
-	const hiddenMask = ref(false)
+	import { getTitleBarHeight ,getStatusBarHeight} from "@/utils/system.js"
+	const imageList = ref([])
+	
+	onLoad(()=>{
+		// 从缓存中获取之前的数据
+		const storageClassList = uni.getStorageSync("classList")
+		// console.log("classList",storageClassList)
+		imageList.value = storageClassList
+	})
+	
+	const hiddenMask = ref(true)
 	const toggleMask = ()=>{
 		hiddenMask.value = !hiddenMask.value
 	}
@@ -157,8 +167,7 @@
 	const cloesInfoPopup = ()=>{
 		infoPopupRef.value.close()
 	}
-	
-	
+
 	
 	// 评分
 	const imgScore = ref(3.5)
